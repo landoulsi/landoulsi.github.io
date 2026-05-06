@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ahmed Landoulsi - Senior Software Engineer specializing in Android, systems optimization, and AI-augmented development">
+    <title>Ahmed Landoulsi — Senior Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0e27;
+            --bg-light: #0f1429;
+            --bg-lighter: #1a1f3a;
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --accent-1: #06b6d4;
+            --accent-2: #f97316;
+            --accent-3: #8b5cf6;
+            --border: #2d3748;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grid background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 39, 0.7);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-1);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero-name {
+            background: linear-gradient(135deg, var(--accent-1) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent-1);
+            color: var(--bg);
+            border: 2px solid var(--accent-1);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent-1);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-1);
+            border: 2px solid var(--accent-1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-1);
+            color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-1);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-text p strong {
+            color: var(--accent-1);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .tech-tag {
+            padding: 0.75rem 1rem;
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--accent-1);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            border-color: var(--accent-1);
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        #projects {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, var(--bg-lighter) 0%, var(--bg-light) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-1);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-1);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-1);
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* Experience Section */
+        #experience {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .experience-item {
+            position: relative;
+            padding: 2rem;
+            padding-left: 2rem;
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            border-color: var(--accent-1);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+
+        .experience-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-1);
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-company {
+            font-size: 0.9rem;
+            color: var(--accent-2);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Skills Section */
+        #skills {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-1);
+            transform: translateY(-4px);
+        }
+
+        .skill-category h3 {
+            font-family: 'Syne', sans-serif;
+            color: var(--accent-1);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links a {
+            color: var(--accent-1);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent-2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1><span class="hero-name">Ahmed Landoulsi</span></h1>
+                <p class="hero-subtitle">Senior Software Engineer</p>
+                <p class="hero-description">
+                    13+ years pioneering the Android ecosystem, optimizing complex systems, and leveraging AI agents to accelerate development. Specializing in full-stack architecture, performance engineering, and building scalable SDKs.
+                </p>
+                <div class="hero-cta">
+                    <a href="#about" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a <strong>Staff Software Engineer</strong> at Careem with deep expertise in building, optimizing, and scaling Android applications at massive scale. My career has been defined by a relentless focus on <strong>system-level optimization</strong>, <strong>architectural excellence</strong>, and <strong>AI-augmented development workflows</strong>.
+                    </p>
+                    <p>
+                        Beyond traditional engineering, I've pioneered the integration of <strong>AI agents</strong> into terminal and IDE environments, dramatically accelerating the development lifecycle. I'm passionate about creating <strong>custom tools and scripts</strong> that eliminate bottlenecks and empower teams.
+                    </p>
+                    <p>
+                        I thrive on delivering <strong>high-quality RFCs with Mermaid diagrams</strong>, maintaining <strong>architectural integrity</strong> through test-driven development, and solving <strong>complex technical problems</strong> with elegant, scalable solutions.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-1); margin-bottom: 1.5rem; font-family: 'Syne', sans-serif;">Core Competencies</h3>
+                    <div class="tech-grid">
+                        <div class="tech-tag">Kotlin</div>
+                        <div class="tech-tag">Java</div>
+                        <div class="tech-tag">Swift</div>
+                        <div class="tech-tag">KMP</div>
+                        <div class="tech-tag">Jetpack Compose</div>
+                        <div class="tech-tag">Coroutines</div>
+                        <div class="tech-tag">Dagger/Hilt</div>
+                        <div class="tech-tag">RxJava</div>
+                        <div class="tech-tag">Spring Boot</div>
+                        <div class="tech-tag">System Programming</div>
+                        <div class="tech-tag">Python</div>
+                        <div class="tech-tag">Node.js</div>
+                        <div class="tech-tag">AI Agents</div>
+                        <div class="tech-tag">Shell Scripts</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Featured Work</h2>
+            <div class="projects-grid">
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">Kotlin-IDE</div>
+                    <p class="project-description">
+                        A lightweight, resource-efficient IDE tool built for constrained environments. Optimized to prevent performance hangs and enable fast code navigation without system-level termination.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Electron</span>
+                        <span class="tech-badge">Shell</span>
+                        <span class="tech-badge">Optimization</span>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">Core Android Architectures</div>
+                    <p class="project-description">
+                        Led technical strategy for Android core technologies at Careem, optimizing app architectures across millions of users. Reduced technical debt and improved engineering velocity through systematic refactoring.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Kotlin</span>
+                        <span class="tech-badge">Architecture</span>
+                        <span class="tech-badge">Performance</span>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">End-to-End SDK Development</div>
+                    <p class="project-description">
+                        Designed and implemented production SDKs with robust security standards and seamless integration. Enabled other teams to build on top of core infrastructure reliably.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">SDK Design</span>
+                        <span class="tech-badge">Security</span>
+                        <span class="tech-badge">Integration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-title">Staff Software Engineer I</div>
+                    <div class="experience-company">Careem</div>
+                    <div class="experience-date">July 2023 – Present</div>
+                    <p class="experience-description">
+                        Leading technical strategy for Android core technologies, optimizing architectures to improve engineering velocity and app performance. Ownership of end-to-end SDK creation and integration. Integrated AI agents into daily workflows to solve complex problems and draft high-quality RFCs. Managing on-call rotations and performing deep-dive production incident analysis.
+                    </p>
+                </div>
+
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-title">Senior Software Developer II / I</div>
+                    <div class="experience-company">Careem</div>
+                    <div class="experience-date">June 2017 – July 2023</div>
+                    <p class="experience-description">
+                        Developed and maintained core Careem technologies across multiple high-traffic Android applications. Contributed to backend initiatives using Spring Boot. Optimized mobile resource management to maintain app stability under constrained conditions. Mentored engineers on CI/CD best practices and automated internal tooling.
+                    </p>
+                </div>
+
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-title">Senior Android Developer</div>
+                    <div class="experience-company">noon</div>
+                    <div class="experience-date">November 2016 – May 2017</div>
+                    <p class="experience-description">
+                        Developed and scaled high-traffic e-commerce Android applications with a focus on performance and UI responsiveness for millions of users.
+                    </p>
+                </div>
+
+                <div class="experience-item scroll-reveal">
+                    <div class="experience-title">Senior Android Developer</div>
+                    <div class="experience-company">Dubai Land Department</div>
+                    <div class="experience-date">March 2015 – November 2016</div>
+                    <p class="experience-description">
+                        Architected secure government-grade mobile applications, integrating complex third-party SDKs and local services with high security standards.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-categories">
+                <div class="skill-category scroll-reveal">
+                    <h3>AI & Productivity</h3>
+                    <div class="skill-list">
+                        <div class="tech-tag">AI Orchestration</div>
+                        <div class="tech-tag">Automated PR Gen</div>
+                        <div class="tech-tag">RFC Drafting</div>
+                        <div class="tech-tag">Mermaid Diagrams</div>
+                        <div class="tech-tag">Custom Scripts</div>
+                    </div>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3>Mobile Development</h3>
+                    <div class="skill-list">
+                        <div class="tech-tag">Kotlin</div>
+                        <div class="tech-tag">Java</div>
+                        <div class="tech-tag">Swift</div>
+                        <div class="tech-tag">KMP</div>
+                        <div class="tech-tag">Jetpack Compose</div>
+                        <div class="tech-tag">Coroutines</div>
+                        <div class="tech-tag">RxJava</div>
+                    </div>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3>Systems & Backend</h3>
+                    <div class="skill-list">
+                        <div class="tech-tag">Spring Boot</div>
+                        <div class="tech-tag">C/C++</div>
+                        <div class="tech-tag">Python</div>
+                        <div class="tech-tag">Node.js</div>
+                        <div class="tech-tag">Electron</div>
+                        <div class="tech-tag">GitHub Actions</div>
+                        <div class="tech-tag">Shell Scripts</div>
+                    </div>
+                </div>
+
+                <div class="skill-category scroll-reveal">
+                    <h3>Architecture & Performance</h3>
+                    <div class="skill-list">
+                        <div class="tech-tag">System Optimization</div>
+                        <div class="tech-tag">Performance Tuning</div>
+                        <div class="tech-tag">Security</div>
+                        <div class="tech-tag">Scalability</div>
+                        <div class="tech-tag">SDK Design</div>
+                        <div class="tech-tag">TDD</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Let's Connect</h2>
+            <div class="contact-content">
+                <p>
+                    I'm always interested in discussing innovative engineering challenges, AI-augmented workflows, or opportunities to collaborate on impactful projects.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:landoulsi.ahmed@gmail.com">Email</a>
+                    <a href="https://linkedin.com/in/ahmed-landoulsi" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/landoulsi" target="_blank">GitHub</a>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    📍 Dubai, UAE | 🔗 +971 564640600
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active nav link
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--accent-1)';
+                } else {
+                    link.style.color = 'var(--text-secondary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
