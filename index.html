@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ahmed Landoulsi - Senior Software Engineer specializing in Android, systems optimization, and AI-augmented development">
-    <title>Ahmed Landoulsi — Senior Software Engineer</title>
+    <meta name="description" content="Ahmed Landoulsi - Staff Software Engineer specializing in high-scale Android, KMP architecture, and AI-augmented engineering">
+    <title>Ahmed Landoulsi — Staff Software Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,13 +16,26 @@
         }
 
         :root {
+            /* Light theme (default) */
+            --bg: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-lighter: #f0f1f3;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --accent-1: #0891b2;
+            --accent-2: #7c3aed;
+            --accent-3: #6366f1;
+            --border: #d1d5db;
+        }
+
+        html[data-theme="dark"] {
             --bg: #0a0e27;
             --bg-light: #0f1429;
             --bg-lighter: #1a1f3a;
             --text-primary: #e5e7eb;
             --text-secondary: #9ca3af;
             --accent-1: #06b6d4;
-            --accent-2: #f97316;
+            --accent-2: #a855f7;
             --accent-3: #8b5cf6;
             --border: #2d3748;
         }
@@ -37,6 +50,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
         }
 
         /* Grid background effect */
@@ -48,11 +62,18 @@
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+                linear-gradient(rgba(8, 145, 178, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(8, 145, 178, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: 0;
+            transition: background-image 0.3s;
+        }
+
+        html[data-theme="dark"] body::before {
+            background-image:
+                linear-gradient(rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
         }
 
         main {
@@ -66,10 +87,15 @@
             top: 0;
             width: 100%;
             backdrop-filter: blur(10px);
-            background: rgba(10, 14, 39, 0.7);
+            background: rgba(255, 255, 255, 0.7);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
             padding: 1rem 2rem;
+            transition: background 0.3s;
+        }
+
+        html[data-theme="dark"] nav {
+            background: rgba(10, 14, 39, 0.7);
         }
 
         nav ul {
@@ -109,6 +135,24 @@
             width: 100%;
         }
 
+        .theme-toggle {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent-1);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -127,7 +171,7 @@
             right: -20%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(8, 145, 178, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 20s ease-in-out infinite;
         }
@@ -139,9 +183,17 @@
             left: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 25s ease-in-out infinite reverse;
+        }
+
+        html[data-theme="dark"] .hero::before {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+        }
+
+        html[data-theme="dark"] .hero::after {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
         }
 
         .hero-content {
@@ -257,16 +309,18 @@
 
         /* About Section */
         #about {
-            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(240, 241, 243, 0.5) 0%, rgba(245, 245, 247, 0.5) 100%);
             backdrop-filter: blur(10px);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
+        html[data-theme="dark"] #about {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+        }
+
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            max-width: 820px;
             margin-top: 2rem;
         }
 
@@ -375,24 +429,86 @@
             border: 1px solid rgba(6, 182, 212, 0.3);
         }
 
+        /* Achievements Section */
+        #achievements {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .achievements-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-item {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-item:hover {
+            border-color: var(--accent-1);
+            box-shadow: 0 0 20px rgba(8, 145, 178, 0.1);
+            transform: translateY(-4px);
+        }
+
+        html[data-theme="dark"] .achievement-item:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+
+        .achievement-title {
+            font-family: 'Syne', sans-serif;
+            color: var(--accent-1);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .achievement-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
         /* Experience Section */
         #experience {
-            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(240, 241, 243, 0.5) 0%, rgba(245, 245, 247, 0.5) 100%);
             backdrop-filter: blur(10px);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
+        html[data-theme="dark"] #experience {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+        }
+
         .experience-timeline {
             position: relative;
-            padding: 2rem 0;
+            padding: 1rem 0;
             margin-top: 2rem;
+            padding-left: 2.5rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 1rem;
+            bottom: 1rem;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-2));
+            border-radius: 2px;
+            opacity: 0.6;
         }
 
         .experience-item {
             position: relative;
-            padding: 2rem;
-            padding-left: 2rem;
+            padding: 1.75rem 2rem;
             background: var(--bg-lighter);
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -400,9 +516,38 @@
             transition: all 0.3s;
         }
 
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--accent-1);
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
         .experience-item:hover {
             border-color: var(--accent-1);
             box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+
+        .experience-item:hover::before {
+            background: var(--accent-1);
+        }
+
+        @media (max-width: 600px) {
+            .experience-timeline {
+                padding-left: 1.75rem;
+            }
+            .experience-item::before {
+                left: -1.75rem;
+                width: 12px;
+                height: 12px;
+            }
         }
 
         .experience-title {
@@ -467,12 +612,62 @@
             gap: 0.75rem;
         }
 
+        /* Education Section */
+        #education {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .education-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-item {
+            background: var(--bg-lighter);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .education-item:hover {
+            border-color: var(--accent-1);
+            transform: translateY(-4px);
+        }
+
+        .education-degree {
+            font-family: 'Syne', sans-serif;
+            color: var(--accent-1);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .education-school {
+            color: var(--accent-2);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* Contact Section */
         #contact {
-            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(240, 241, 243, 0.5) 0%, rgba(245, 245, 247, 0.5) 100%);
             backdrop-filter: blur(10px);
             border-top: 1px solid var(--border);
             text-align: center;
+        }
+
+        html[data-theme="dark"] #contact {
+            background: linear-gradient(135deg, rgba(15, 20, 41, 0.5) 0%, rgba(26, 31, 58, 0.5) 100%);
         }
 
         .contact-content {
@@ -536,13 +731,18 @@
 
         @media (max-width: 768px) {
             nav ul {
-                gap: 1.5rem;
+                gap: 1rem;
                 font-size: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                padding-right: 3rem;
             }
+        }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+        @media (max-width: 520px) {
+            nav ul li:nth-child(5),
+            nav ul li:nth-child(7) {
+                display: none;
             }
 
             .projects-grid {
@@ -570,11 +770,14 @@
         <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#impact">Impact</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
     </nav>
 
     <main>
@@ -582,7 +785,7 @@
         <section id="hero" class="hero">
             <div class="hero-content">
                 <h1><span class="hero-name">Ahmed Landoulsi</span></h1>
-                <p class="hero-subtitle">Senior Software Engineer</p>
+                <p class="hero-subtitle">Staff Software Engineer</p>
                 <p class="hero-description">
                     13+ years pioneering the Android ecosystem, optimizing complex systems, and leveraging AI agents to accelerate development. Specializing in full-stack architecture, performance engineering, and building scalable SDKs.
                 </p>
@@ -599,75 +802,14 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        I'm a <strong>Staff Software Engineer</strong> at Careem with deep expertise in building, optimizing, and scaling Android applications at massive scale. My career has been defined by a relentless focus on <strong>system-level optimization</strong>, <strong>architectural excellence</strong>, and <strong>AI-augmented development workflows</strong>.
+                        I'm a <strong>Staff Software Engineer</strong> at Careem leading architectural strategy across Android and cross-platform ecosystems. With 13+ years in mobile development, I specialize in high-scale system architecture, <strong>Kotlin Multiplatform (KMP)</strong> strategy, and <strong>AI-augmented engineering workflows</strong> that transform development velocity.
                     </p>
                     <p>
-                        Beyond traditional engineering, I've pioneered the integration of <strong>AI agents</strong> into terminal and IDE environments, dramatically accelerating the development lifecycle. I'm passionate about creating <strong>custom tools and scripts</strong> that eliminate bottlenecks and empower teams.
+                        I champion <strong>SOLID principles</strong> and <strong>Clean Architecture</strong> to drive modularization and system reliability. I've architected shared business logic frameworks, led <strong>CI/CD orchestration</strong> with Bitrise and GitHub Actions, and pioneered <strong>LLM agent integration</strong> for automated RFC creation and code quality automation.
                     </p>
                     <p>
-                        I thrive on delivering <strong>high-quality RFCs with Mermaid diagrams</strong>, maintaining <strong>architectural integrity</strong> through test-driven development, and solving <strong>complex technical problems</strong> with elegant, scalable solutions.
+                        My expertise spans from <strong>high-frequency WebSocket systems</strong> and <strong>security-critical modules (NDK/C++)</strong> to backend optimization with Spring Boot. I'm committed to delivering <strong>100% fidelity UI</strong>, maintaining end-to-end SDK ownership, and mentoring engineers on architectural best practices.
                     </p>
-                </div>
-                <div>
-                    <h3 style="color: var(--accent-1); margin-bottom: 1.5rem; font-family: 'Syne', sans-serif;">Core Competencies</h3>
-                    <div class="tech-grid">
-                        <div class="tech-tag">Kotlin</div>
-                        <div class="tech-tag">Java</div>
-                        <div class="tech-tag">Swift</div>
-                        <div class="tech-tag">KMP</div>
-                        <div class="tech-tag">Jetpack Compose</div>
-                        <div class="tech-tag">Coroutines</div>
-                        <div class="tech-tag">Dagger/Hilt</div>
-                        <div class="tech-tag">RxJava</div>
-                        <div class="tech-tag">Spring Boot</div>
-                        <div class="tech-tag">System Programming</div>
-                        <div class="tech-tag">Python</div>
-                        <div class="tech-tag">Node.js</div>
-                        <div class="tech-tag">AI Agents</div>
-                        <div class="tech-tag">Shell Scripts</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Featured Work</h2>
-            <div class="projects-grid">
-                <div class="project-card scroll-reveal">
-                    <div class="project-title">Kotlin-IDE</div>
-                    <p class="project-description">
-                        A lightweight, resource-efficient IDE tool built for constrained environments. Optimized to prevent performance hangs and enable fast code navigation without system-level termination.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Electron</span>
-                        <span class="tech-badge">Shell</span>
-                        <span class="tech-badge">Optimization</span>
-                    </div>
-                </div>
-
-                <div class="project-card scroll-reveal">
-                    <div class="project-title">Core Android Architectures</div>
-                    <p class="project-description">
-                        Led technical strategy for Android core technologies at Careem, optimizing app architectures across millions of users. Reduced technical debt and improved engineering velocity through systematic refactoring.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Kotlin</span>
-                        <span class="tech-badge">Architecture</span>
-                        <span class="tech-badge">Performance</span>
-                    </div>
-                </div>
-
-                <div class="project-card scroll-reveal">
-                    <div class="project-title">End-to-End SDK Development</div>
-                    <p class="project-description">
-                        Designed and implemented production SDKs with robust security standards and seamless integration. Enabled other teams to build on top of core infrastructure reliably.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-badge">SDK Design</span>
-                        <span class="tech-badge">Security</span>
-                        <span class="tech-badge">Integration</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -681,7 +823,7 @@
                     <div class="experience-company">Careem</div>
                     <div class="experience-date">July 2023 – Present</div>
                     <p class="experience-description">
-                        Leading technical strategy for Android core technologies, optimizing architectures to improve engineering velocity and app performance. Ownership of end-to-end SDK creation and integration. Integrated AI agents into daily workflows to solve complex problems and draft high-quality RFCs. Managing on-call rotations and performing deep-dive production incident analysis.
+                        Championing SOLID principles and Clean Architecture across the Android organization to modularize systems and deliver 100% fidelity UI. Leading CI/CD orchestration with Bitrise and GitHub Actions to streamline mobile releases. Architecting shared business logic layers using KMP to drive feature parity between Android and iOS. Integrated LLM agents into the dev-loop for automated RFC creation and code quality automation.
                     </p>
                 </div>
 
@@ -690,7 +832,7 @@
                     <div class="experience-company">Careem</div>
                     <div class="experience-date">June 2017 – July 2023</div>
                     <p class="experience-description">
-                        Developed and maintained core Careem technologies across multiple high-traffic Android applications. Contributed to backend initiatives using Spring Boot. Optimized mobile resource management to maintain app stability under constrained conditions. Mentored engineers on CI/CD best practices and automated internal tooling.
+                        Developed high-frequency WebSocket-driven features for sub-second tracking and bidirectional state synchronization. Engineered advanced root and tamper detection modules using NDK (C++) to protect the platform. Integrated Android Activity Recognition with backend services for battery optimization. Led modernization efforts including Java to Kotlin migrations and View system transitions to Jetpack Compose.
                     </p>
                 </div>
 
@@ -714,6 +856,89 @@
             </div>
         </section>
 
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Featured Work</h2>
+            <div class="projects-grid">
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">WebSocket Mobile SDK</div>
+                    <p class="project-description">
+                        Architected and deployed a full Kotlin Multiplatform (KMP) mobile SDK leveraging WebSocket communication for high-frequency, bidirectional state synchronization. Enabled sub-second tracking and real-time feature delivery.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">KMP</span>
+                        <span class="tech-badge">WebSockets</span>
+                        <span class="tech-badge">Real-Time Systems</span>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">Platform Integrity & Security Suite</div>
+                    <p class="project-description">
+                        Engineered an advanced mobile security module using NDK (C++) for root detection, mock location detection, and location jamming identification. Protected platform integrity against GPS spoofing and security tampering threats.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">NDK/C++</span>
+                        <span class="tech-badge">Security</span>
+                        <span class="tech-badge">Fraud Prevention</span>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-reveal">
+                    <div class="project-title">Cross-Platform Architecture (KMP)</div>
+                    <p class="project-description">
+                        Architected and deployed shared Kotlin Multiplatform frameworks including a core Location Framework used across Android and iOS for unified validation. Drove feature parity between teams and reduced duplication.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">KMP</span>
+                        <span class="tech-badge">Cross-Platform</span>
+                        <span class="tech-badge">Shared Architecture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <h2>Impact</h2>
+            <div class="achievements-list">
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-title">Automation & CI/CD Leadership</div>
+                    <p class="achievement-description">
+                        Championed the mobile engineering CI/CD strategy by architecting and maintaining GitHub Actions and Bitrise workflows, ensuring high deployment velocity and release stability across the organization.
+                    </p>
+                </div>
+
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-title">Productivity & Workflow Tooling</div>
+                    <p class="achievement-description">
+                        Built a personal engineering productivity ecosystem from scratch. Runs multiple Claude CLI instances in parallel across a 6-pane terminal to work on separate features simultaneously. Created SwiftBar plugins surfacing Jira tasks and pull requests with one-click AI code review, later migrated into a full Electron app using Jira CLI and GitHub CLI with optimized rate limiting. Built a shell script to convert Mermaid diagrams into VS Code themed images for RFC documentation, with a single-step markdown to Google Docs pipeline. Configured custom Gemini Gems for recurring tasks including SQL query migration, analytics event creation, and Jira descriptions.
+                    </p>
+                </div>
+
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-title">AI-Augmented Engineering</div>
+                    <p class="achievement-description">
+                        Pioneered a structured approach to agentic coding where AI accelerates execution while engineering judgment drives architecture. Connected AI agents to Figma MCP and Slack to automatically pull design specs and technical context, significantly improving pixel-perfect UI accuracy. Consistently guides LLM sessions with a senior architect mindset, enforcing single responsibility, clean abstractions, and testability rather than accepting generated output blindly.
+                    </p>
+                </div>
+
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-title">Modernization & Tech Debt Reduction</div>
+                    <p class="achievement-description">
+                        Led migrations from Java to Kotlin and legacy View systems to Jetpack Compose. Managed native library updates from 4KB to 16KB page sizes to maintain Play Store compliance.
+                    </p>
+                </div>
+
+                <div class="achievement-item scroll-reveal">
+                    <div class="achievement-title">Cross-Functional Systems Delivery</div>
+                    <p class="achievement-description">
+                        Partnered across product and engineering to take complex systems from grooming through production, including building the analytics dashboards needed to observe and tune them post-launch.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Skills Section -->
         <section id="skills">
             <h2>Skills & Expertise</h2>
@@ -722,9 +947,14 @@
                     <h3>AI & Productivity</h3>
                     <div class="skill-list">
                         <div class="tech-tag">AI Orchestration</div>
+                        <div class="tech-tag">Claude CLI</div>
+                        <div class="tech-tag">Gemini Gems</div>
+                        <div class="tech-tag">Multi-Agent Workflows</div>
+                        <div class="tech-tag">Figma MCP</div>
                         <div class="tech-tag">Automated PR Gen</div>
                         <div class="tech-tag">RFC Drafting</div>
                         <div class="tech-tag">Mermaid Diagrams</div>
+                        <div class="tech-tag">Feature Flags</div>
                         <div class="tech-tag">Custom Scripts</div>
                     </div>
                 </div>
@@ -769,6 +999,24 @@
             </div>
         </section>
 
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education & Honors</h2>
+            <div class="education-content">
+                <div class="education-item scroll-reveal">
+                    <div class="education-degree">Engineer's Degree in Computer Science</div>
+                    <div class="education-school">ENSI — National School of Computer Science (Tunisia)</div>
+                    <div class="education-details">Specialization: AI | Graduated 2012</div>
+                </div>
+
+                <div class="education-item scroll-reveal">
+                    <div class="education-degree"><a href="https://www.webmanagercenter.com/2011/11/17/112695/concours-android-summer-challenge-la-tunisie-a-d-incroyables-talents/" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 2px solid var(--accent-2);">LG Android Summer Challenge — Second Prize Winner</a></div>
+                    <div class="education-school">2011</div>
+                    <div class="education-details">Recognized for "The Guide," an innovative mobile application during the early Android ecosystem</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact">
             <h2>Let's Connect</h2>
@@ -780,15 +1028,40 @@
                     <a href="mailto:landoulsi.ahmed@gmail.com">Email</a>
                     <a href="https://linkedin.com/in/ahmed-landoulsi" target="_blank">LinkedIn</a>
                     <a href="https://github.com/landoulsi" target="_blank">GitHub</a>
+                    <a href="tel:+971564640600">Phone</a>
                 </div>
                 <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                    📍 Dubai, UAE | 🔗 +971 564640600
+                    Dubai, UAE &nbsp;·&nbsp; +971 564640600
+                </p>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
+                    Arabic (Native) &nbsp;·&nbsp; English (Fluent) &nbsp;·&nbsp; French (Good)
                 </p>
             </div>
         </section>
     </main>
 
     <script>
+        // Theme management
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
