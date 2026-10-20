@@ -241,13 +241,20 @@
         footer .container {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 24px;
+        }
+
+        .footer-text {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         footer a {
             color: var(--text-muted);
-            margin-left: 16px;
+            margin-right: 16px;
         }
 
         footer .footer-logo {
@@ -353,11 +360,13 @@
 
     <footer>
         <div class="container">
-            <span>&copy; 2026 Landoulsi Technologies. All rights reserved.</span>
-            <span>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="terms.html">Terms</a>
-            </span>
+            <div class="footer-text">
+                <span>&copy; 2026 Landoulsi Technologies. All rights reserved.</span>
+                <span>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                </span>
+            </div>
             <img class="footer-logo" src="logo.png" alt="Landoulsi Technologies logo">
         </div>
     </footer>
