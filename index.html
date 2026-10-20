@@ -72,11 +72,22 @@
             padding-bottom: 18px;
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text);
-            text-decoration: none;
+        .logo img {
+            display: block;
+            height: 56px;
+            width: auto;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .logo img {
+                background: #ffffff;
+                border-radius: 6px;
+            }
+        }
+
+        :root[data-theme="dark"] .logo img {
+            background: #ffffff;
+            border-radius: 6px;
         }
 
         nav a {
@@ -213,7 +224,7 @@
 <body>
     <header>
         <div class="container">
-            <a class="logo" href="/">Landoulsi Technologies</a>
+            <a class="logo" href="/"><img src="logo.png" alt="Landoulsi Technologies logo"></a>
             <nav>
                 <a href="#services">Services</a>
                 <a href="#about">About</a>
