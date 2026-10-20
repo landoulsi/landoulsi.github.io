@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Landoulsi Technologies builds custom software for businesses, including fleet management, operations and productivity tools.">
     <title>Landoulsi Technologies — Custom Software Development</title>
+    <script>
+        (function () {
+            var theme = "light";
+            try {
+                theme = localStorage.getItem("theme") === "dark" ? "dark" : "light";
+            } catch (e) {}
+            document.documentElement.setAttribute("data-theme", theme);
+        })();
+    </script>
     <style>
         * {
             margin: 0;
@@ -17,19 +26,9 @@
             --bg-alt: #f5f7fa;
             --text: #111827;
             --text-muted: #4b5563;
-            --accent: #0f766e;
+            --brand-navy: #0f1d4a;
+            --accent: #1565d8;
             --border: #e5e7eb;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) {
-                --bg: #0b1120;
-                --bg-alt: #111827;
-                --text: #e5e7eb;
-                --text-muted: #9ca3af;
-                --accent: #2dd4bf;
-                --border: #1f2937;
-            }
         }
 
         :root[data-theme="dark"] {
@@ -37,7 +36,8 @@
             --bg-alt: #111827;
             --text: #e5e7eb;
             --text-muted: #9ca3af;
-            --accent: #2dd4bf;
+            --brand-navy: #ffffff;
+            --accent: #5ab4ff;
             --border: #1f2937;
         }
 
@@ -72,22 +72,62 @@
             padding-bottom: 18px;
         }
 
-        .logo img {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--brand-navy);
+        }
+
+        .brand img {
             display: block;
             height: 56px;
             width: auto;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme="light"]) .logo img {
-                background: #ffffff;
-                border-radius: 6px;
-            }
-        }
-
-        :root[data-theme="dark"] .logo img {
+        :root[data-theme="dark"] .brand img {
             background: #ffffff;
             border-radius: 6px;
+        }
+
+        .brand-name {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            font-family: "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .brand-name strong {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--brand-navy);
+        }
+
+        .brand-name span {
+            margin-top: 6px;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.55em;
+            color: var(--text-muted);
+        }
+
+        .theme-toggle {
+            margin-left: 20px;
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: none;
+            color: var(--text-muted);
+            font: inherit;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         nav a {
@@ -224,11 +264,18 @@
 <body>
     <header>
         <div class="container">
-            <a class="logo" href="/"><img src="logo.png" alt="Landoulsi Technologies logo"></a>
+            <a class="brand" href="index.html">
+                <img src="logo.png" alt="Landoulsi Technologies logo">
+                <span class="brand-name">
+                    <strong>LANDOULSI</strong>
+                    <span>TECHNOLOGIES</span>
+                </span>
+            </a>
             <nav>
                 <a href="#services">Services</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
+                <button type="button" class="theme-toggle" id="theme-toggle">Dark mode</button>
             </nav>
         </div>
     </header>
@@ -303,5 +350,28 @@
             </span>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            var button = document.getElementById("theme-toggle");
+
+            function apply(theme) {
+                document.documentElement.setAttribute("data-theme", theme);
+                var next = theme === "dark" ? "light" : "dark";
+                button.textContent = next === "dark" ? "Dark mode" : "Light mode";
+                button.setAttribute("aria-label", "Switch to " + next + " mode");
+            }
+
+            apply(document.documentElement.getAttribute("data-theme"));
+
+            button.addEventListener("click", function () {
+                var theme = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+                apply(theme);
+                try {
+                    localStorage.setItem("theme", theme);
+                } catch (e) {}
+            });
+        })();
+    </script>
 </body>
 </html>
